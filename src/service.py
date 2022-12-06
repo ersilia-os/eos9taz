@@ -59,7 +59,7 @@ class Model(object):
     def set_framework_dir(self, dest):
         self.framework_dir = os.path.abspath(dest)
 
-    def sample(self, num_samples): # <-- EDIT: rename if model does not do predictions (e.g. it does calculations)
+    def predict(self, num_samples): # <-- EDIT: rename if model does not do predictions (e.g. it does calculations)
         tmp_folder = tempfile.mkdtemp(prefix="eos-")
         data_file = os.path.join(tmp_folder, self.DATA_FILE)
         output_file = os.path.join(tmp_folder, self.OUTPUT_FILE)
@@ -154,8 +154,8 @@ class Artifact(BentoServiceArtifact):
 @artifacts([Artifact("model")])
 class Service(BentoService):
     @api(input=JsonInput(), batch=True)
-    def sample(self, input: List[JsonSerializable]): # <-- EDIT: rename if necessary 
+    def predict(self, input: List[JsonSerializable]): # <-- EDIT: rename if necessary 
         input = input[0]
         num_samples = [inp["input"] for inp in input]
-        output = self.artifacts.model.sample(num_samples) # <-- EDIT: rename if necessary
+        output = self.artifacts.model.predict(num_samples) # <-- EDIT: rename if necessary
         return [output] 
