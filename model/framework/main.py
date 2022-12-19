@@ -49,7 +49,7 @@ def get_argparser() -> argparse.ArgumentParser:
 def run_from_args(args: argparse.Namespace) -> None:
     model_kwargs = {key: getattr(args, key) for key in ["beam_size", "seed", "num_workers"]}
     #num_samples_df = pd.read_csv(args.NUM_SAMPLES)
-    num_sample = 100
+    num_sample = 1000
     
     input_sample_df = pd.read_csv(args.INPUT_SAMPLE_csv)
     input_sample = input_sample_df['smiles'][0]
