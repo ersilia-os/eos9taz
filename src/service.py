@@ -1,10 +1,8 @@
 from typing import List
-
 from bentoml import BentoService, api, artifacts
 from bentoml.adapters import JsonInput
 from bentoml.types import JsonSerializable
 from bentoml.service import BentoServiceArtifact
-
 import pickle
 import os
 import shutil
@@ -21,32 +19,12 @@ def load_model(framework_dir, checkpoints_dir):
     mdl.load(framework_dir, checkpoints_dir)
     return mdl
 
-def Float(x):
-    try:
-        return float(x)
-    except:
-        return None
-    
-def String(x):
-    x = str(x)
-    if not x:
-        return None
-    if x == "nan":
-        return None
-    if x == "null":
-        return None
-    if x == "False":
-        return None
-    if x == "None":
-        return None
-    return x
-
 
 class Model(object):
     def __init__(self):
-        self.DATA_FILE = "_data.csv"
-        self.OUTPUT_FILE = "_output.csv"
-        self.RUN_FILE = "_run.sh"
+        self.DATA_FILE = "data.csv"
+        self.PRED_FILE = "pred.csv"
+        self.RUN_FILE = "run.sh"
         self.LOG_FILE = "run.log"
 
     def load(self, framework_dir, checkpoints_dir):
@@ -59,26 +37,22 @@ class Model(object):
     def set_framework_dir(self, dest):
         self.framework_dir = os.path.abspath(dest)
 
-    def predict(self, smiles_list): # <-- EDIT: rename if model does not do predictions (e.g. it does calculations)
-        tmp_folder = tempfile.mkdtemp(prefix="eos-")
+    def predict(self, smiles_list):
+        tmp_folder = tempfile.mkdtemp()
         data_file = os.path.join(tmp_folder, self.DATA_FILE)
-        output_file = os.path.join(tmp_folder, self.OUTPUT_FILE)
+        pred_file = os.path.join(tmp_folder, self.PRED_FILE)
         log_file = os.path.join(tmp_folder, self.LOG_FILE)
         with open(data_file, "w") as f:
             f.write("smiles"+os.linesep)
             for smiles in smiles_list:
-                f.write(smiles+os.linesep)
-        # with open(data_file, "w") as f:
-        #     f.write("num_samples"+os.linesep)
-        #     for inp in num_samples:
-        #         f.write(inp+os.linesep)
+                f.write(smiles + os.linesep)
         run_file = os.path.join(tmp_folder, self.RUN_FILE)
         with open(run_file, "w") as f:
             lines = [
-                "python {0}/molecule_generation/main.py {0}/molecule_generation/MODEL_DIR {1} {2}".format(
+                "python {0}/main.py {0}/MODEL_DIR {1} {2} ".format(
                     self.framework_dir,
                     data_file,
-                    output_file
+                    pred_file
                 )
             ]
             f.write(os.linesep.join(lines))
@@ -87,7 +61,7 @@ class Model(object):
             subprocess.Popen(
                 cmd, stdout=fp, stderr=fp, shell=True, env=os.environ
             ).wait()
-        with open(output_file, "r") as f:
+        with open(pred_file, "r") as f:
             reader = csv.reader(f)
             h = next(reader)
             R = []
@@ -96,15 +70,14 @@ class Model(object):
                 sample = [str(x) for x in r]
                 samples.append(sample)
 
-            R += [{"Sample": samples}] # <-- EDIT: Modify according to type of output (Float, String...)
+            R += [{"Sample": samples}] 
         meta = {
-            "outcome": h
+            "value": h
         }
         result = {
-            "result": R,
-            "meta": meta
+            'result': R,
+            'meta': meta
         }
-        shutil.rmtree(tmp_folder)
         return result
 
 
@@ -158,8 +131,8 @@ class Artifact(BentoServiceArtifact):
 @artifacts([Artifact("model")])
 class Service(BentoService):
     @api(input=JsonInput(), batch=True)
-    def predict(self, input: List[JsonSerializable]): # <-- EDIT: rename if necessary 
+    def predict(self, input: List[JsonSerializable]):
         input = input[0]
         smiles_list = [inp["input"] for inp in input]
-        output = self.artifacts.model.predict(smiles_list) # <-- EDIT: rename if necessary
-        return [output] 
+        output = self.artifacts.model.predict(smiles_list)
+        return [output]
