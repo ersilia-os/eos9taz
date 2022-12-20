@@ -8,9 +8,10 @@ RUN pip install dpu-utils == 0.2.13
 RUN pip install more-itertools
 RUN pip install numpy
 RUN pip install pandas
-RUN pip install protobuf==3.20
+RUN pip install protobuf==3.19.5
 RUN pip install scikit-learn==0.24.1
 RUN pip install tf2_gnn==2.13.0
+RUN pip install SQLAlchemy==1.3.24
 
 
 WORKDIR /repo
