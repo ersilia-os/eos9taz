@@ -1,38 +1,40 @@
-# Model title
+# Extending molecular scaffolds with structural motifs
 
-## Model identifiers
-- Slug: <add_slug_here>
-- Ersilia ID: <add_ersilia_id_here>
-- Tags: <add_tags_here>
+MoLeR is a graph-based generative model that combines fragment-based and atom-by-atom generation of new molecules with scaffold-constrained optimization. It does not depend on generation history and therefore MoLeR is able to complete arbitrary scaffolds. The model has been trained on the GuacaMol dataset.
 
-## Model description
+## Identifiers
 
-Short description of the model in one or two sentences
+* EOS model ID: `eos9taz`
+* Slug: `moler-generation`
 
-- Input:
-- Output: {unit and description of output) 
-- Model type: (Regression or Classification)
-- Training set: (number of compounds and link to the training data)
-- Mode of training: (is it pretrained? that is were the checkpoints downloaded and used to train the model? or is it retrained? that is trained from scratch with an updated data)
+## Characteristics
 
-## Source code
+* Input: `Compound`
+* Input Shape: `Single`
+* Task: `Generative`
+* Output: `Compound`
+* Output Type: `String`
+* Output Shape: `List`
+* Interpretation: Probability of a compound being stable (>=0.5: Stable, <0.5: Unstable)
 
-Cite the source publication
+## References
 
-- Code: include link to the source code
-- Checkpoints: include the link to the checkpoints used if model is a pretrained model
+* [Publication](https://arxiv.org/abs/2103.03864)
+* [Source Code](https://github.com/microsoft/molecule-generation)
+* Ersilia contributor: [anamika-yadav99](https://github.com/anamika-yadav99)
+
+## Citation
+
+If you use this model, please cite the [original authors](https://arxiv.org/abs/2103.03864) of the model and the [Ersilia Model Hub](https://github.com/ersilia-os/ersilia/blob/master/CITATION.cff).
 
 ## License
 
-State the licences used which are GPL v3 license used by Ersilia and the license used by the source code, if any exists. Use [this guide]() on how to license new models to be incorporated into Ersilia's model hub 
+This package is licensed under a GPL-3.0 license. The model contained within this package is licensed under a MIT license.
 
-## History
+Notice: Ersilia grants access to these models 'as is' provided by the original authors, please refer to the original code repository and/or publication if you use the model in your research.
 
-- State the date when the model was downloaded and incorporated into Ersilia.
-- List any essential steps/modifications to the original code
-
-## About us
+## About Us
 
 The [Ersilia Open Source Initiative](https://ersilia.io) is a Non Profit Organization ([1192266](https://register-of-charities.charitycommission.gov.uk/charity-search/-/charity-details/5170657/full-print)) with the mission is to equip labs, universities and clinics in LMIC with AI/ML tools for infectious disease research.
 
-[Help us](https://www.ersilia.io/donate) achieve our mission or [volunteer](https://www.ersilia.io/volunteer) with us!
+[Help us](https://www.ersilia.io/donate) achieve our mission!
