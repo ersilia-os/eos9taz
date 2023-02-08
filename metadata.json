@@ -5,13 +5,21 @@
     "Title": "Extending molecular scaffolds with structural motifs",
     "Description": "MoLeR is a graph-based generative model that combines fragment-based and atom-by-atom generation of new molecules with scaffold-constrained optimization. It does not depend on generation history and therefore MoLeR is able to complete arbitrary scaffolds. The model has been trained on the GuacaMol dataset.",
     "Mode": "Pretrained",
-    "Task": ["Generative"],
-    "Input": ["Compound"],
+    "Task": [
+        "Generative"
+    ],
+    "Input": [
+        "Compound"
+    ],
     "Input Shape": "Single",
-    "Output": ["Compound"],
-    "Output Type": ["String"],
+    "Output": [
+        "Compound"
+    ],
+    "Output Type": [
+        "String"
+    ],
     "Output Shape": "List",
-    "Interpretation": "Probability of a compound being stable (>=0.5: Stable, <0.5: Unstable)",
+    "Interpretation": "100 new molecules are sampled for each input molecule. ",
     "Tag": [
         "Chemical graph model",
         "Compound generation"
