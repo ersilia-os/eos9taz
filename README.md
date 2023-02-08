@@ -15,7 +15,7 @@ MoLeR is a graph-based generative model that combines fragment-based and atom-by
 * Output: `Compound`
 * Output Type: `String`
 * Output Shape: `List`
-* Interpretation: Probability of a compound being stable (>=0.5: Stable, <0.5: Unstable)
+* Interpretation: 100 new molecules are sampled for each input molecule. 
 
 ## References
 
