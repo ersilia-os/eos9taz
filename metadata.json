@@ -26,5 +26,10 @@
     ],
     "Publication": "https://arxiv.org/abs/2103.03864",
     "Source Code": "https://github.com/microsoft/molecule-generation",
-    "License": "MIT"
+    "License": "MIT",
+    "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos9taz.zip",
+    "DockerHub": "https://hub.docker.com/r/ersiliaos/eos9taz",
+    "Docker Architecture": [
+        "AMD64"
+    ]
 }

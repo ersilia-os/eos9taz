@@ -23,6 +23,11 @@ MoLeR is a graph-based generative model that combines fragment-based and atom-by
 * [Source Code](https://github.com/microsoft/molecule-generation)
 * Ersilia contributor: [anamika-yadav99](https://github.com/anamika-yadav99)
 
+## Ersilia model URLs
+* [GitHub](https://github.com/ersilia-os/eos9taz)
+* [AWS S3](https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos9taz.zip)
+* [DockerHub](https://hub.docker.com/r/ersiliaos/eos9taz) (AMD64)
+
 ## Citation
 
 If you use this model, please cite the [original authors](https://arxiv.org/abs/2103.03864) of the model and the [Ersilia Model Hub](https://github.com/ersilia-os/ersilia/blob/master/CITATION.cff).
