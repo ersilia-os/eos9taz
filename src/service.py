@@ -67,10 +67,12 @@ class Model(object):
             R = []
             samples = []
             for r in reader:
-                sample = [str(x) for x in r]
-                samples.append(sample)
+                for x in r:
+                    sample = str(x)  # Convert each element directly to a string
+                    samples.append(sample)
 
             R += [{"Sample": samples}] 
+		
         meta = {
             "value": h
         }
