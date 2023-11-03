@@ -6,7 +6,6 @@ from bentoml.service import BentoServiceArtifact
 import pickle
 import os
 import shutil
-import collections
 import tempfile
 import subprocess
 import csv
@@ -68,13 +67,13 @@ class Model(object):
             samples = []
             for r in reader:
                 for x in r:
-                    sample = str(x)  # Convert each element directly to a string
+                    sample = str(x)
                     samples.append(sample)
 
-            R += [{"Sample": samples}] 
+            R += [{"outcome": samples}] 
 		
         meta = {
-            "value": h
+            "outcome": h
         }
         result = {
             'result': R,
