@@ -69,8 +69,7 @@ class Model(object):
                 for x in r:
                     sample = str(x)
                     samples.append(sample)
-
-            R += [{"outcome": samples}] 
+                R += [{"outcome": samples}] 
 		
         meta = {
             "outcome": h
