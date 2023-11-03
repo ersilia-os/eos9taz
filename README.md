@@ -1,11 +1,11 @@
-# Extending molecular scaffolds with structural motifs
+# Extending molecular scaffolds with fragments
 
-MoLeR is a graph-based generative model that combines fragment-based and atom-by-atom generation of new molecules with scaffold-constrained optimization. It does not depend on generation history and therefore MoLeR is able to complete arbitrary scaffolds. The model has been trained on the GuacaMol dataset.
+MoLeR is a graph-based generative model that combines fragment-based and atom-by-atom generation of new molecules with scaffold-constrained optimization. It does not depend on generation history and therefore MoLeR is able to complete arbitrary scaffolds. The model has been trained on the GuacaMol dataset. Here we sample a fragment library from Enamine.
 
 ## Identifiers
 
 * EOS model ID: `eos9taz`
-* Slug: `moler-generation`
+* Slug: `moler-enamine-fragments`
 
 ## Characteristics
 
@@ -15,7 +15,7 @@ MoLeR is a graph-based generative model that combines fragment-based and atom-by
 * Output: `Compound`
 * Output Type: `String`
 * Output Shape: `List`
-* Interpretation: 100 new molecules are sampled for each input molecule. 
+* Interpretation: 1000 new molecules are sampled for each input molecule, preserving its scaffold. 
 
 ## References
 
