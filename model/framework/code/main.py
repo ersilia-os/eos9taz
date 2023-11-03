@@ -8,12 +8,35 @@ from molecule_generation.utils.cli_utils import (
     supress_tensorflow_warnings,
 )
 import csv
+import random
+from tqdm import tqdm
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit import DataStructs
+from rdkit.Chem.Scaffolds import MurckoScaffold
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
+ROOT = os.path.dirname(os.path.abspath(__file__))
+BLOCKS_LIST = os.path.join(ROOT, "..", "..", "checkpoints", "fragments_from_enamine.smi")
+
+N_SAMPLES = 1000
+
+
+def get_murcko_scaffold(smiles):
+    molecule = Chem.MolFromSmiles(smiles)
+    scaffold = MurckoScaffold.GetScaffoldForMol(molecule)
+    scaffold_smiles = Chem.MolToSmiles(scaffold)
+    return scaffold_smiles
+
+
+def read_blocks():
+    blocks_list = []
+    with open(BLOCKS_LIST, "r") as f:
+        reader = csv.reader(f, delimiter="\t")
+        for r in reader:
+            blocks_list += [r[0]]
+    return blocks_list
 
 def read_smiles(input_file):
     smiles = []
@@ -33,33 +56,38 @@ def tanimoto_calc(smi1, smi2):
     s = round(DataStructs.TanimotoSimilarity(fp1, fp2), 3)
     return s
 
-def scaffold_based_sampling(smiles_list):
+def scaffold_based_sampling(query_scaffold, blocks_list):
     ROOT = os.path.dirname(os.path.abspath(__file__))
     model_directory = os.path.abspath(os.path.join(ROOT,"..","..","checkpoints","MODEL_DIR"))
     with load_model_from_directory(model_directory) as model:
-        print(type(model))
-        print(smiles_list)
-        model.num_workers = 1
-        embeddings = model.encode(smiles_list)
-        print(embeddings)
-        decoded = model.decode(embeddings, scaffolds=["CN", "CCC"])
+        embeddings = model.encode(blocks_list)
+        decoded = model.decode(embeddings, scaffolds=[query_scaffold]*(len(blocks_list)))
     return decoded
-
 
 def main() -> None:
     supress_tensorflow_warnings()
     setup_logging()
 
-    # Replace 'path/to/model_directory' with the actual absolute path to your model directory.
-
+    blocks_list = read_blocks()
 	
     input_file = sys.argv[1]
     output_file = sys.argv[2]
 
     smiles_list = read_smiles(input_file=input_file)
-    decoded = scaffold_based_sampling(smiles_list)
+    scaff_list = [get_murcko_scaffold(smi) for smi in smiles_list]
 
-    print(decoded)
+    R = []
+    for smi in tqdm(scaff_list):
+        blocks_list_samp = random.sample(blocks_list, N_SAMPLES)
+        decoded = scaffold_based_sampling(smi, blocks_list_samp)
+        R += [decoded]
+    
+    with open(output_file, "w") as f:
+        writer = csv.writer(f)
+        header = ["cpd_{0}".format(i) for i in range(N_SAMPLES)]
+        writer.writerow(header)
+        for r in R:
+            writer.writerow(r)
 
 
 if __name__ == "__main__":
