@@ -18,6 +18,20 @@ def load_model(framework_dir, checkpoints_dir):
     mdl.load(framework_dir, checkpoints_dir)
     return mdl
 
+def String(x):
+    x = str(x)
+    if not x:
+        return None
+    if x == "nan":
+        return None
+    if x == "null":
+        return None
+    if x == "False":
+        return None
+    if x == "None":
+        return None
+    return x
+
 
 class Model(object):
     def __init__(self):
@@ -64,12 +78,8 @@ class Model(object):
             reader = csv.reader(f)
             h = next(reader)
             R = []
-            samples = []
             for r in reader:
-                for x in r:
-                    sample = str(x)
-                    samples.append(sample)
-                R += [{"outcome": samples}] 
+                R += [{"outcome": [String(x) for x in r]}] 
 		
         meta = {
             "outcome": h
