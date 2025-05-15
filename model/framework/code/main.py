@@ -84,7 +84,7 @@ def main() -> None:
     
     with open(output_file, "w") as f:
         writer = csv.writer(f)
-        header = ["cpd_{0}".format(i) for i in range(N_SAMPLES)]
+        header = ["cpd_{:03d}".format(i) for i in range(N_SAMPLES)]
         writer.writerow(header)
         for r in R:
             writer.writerow(r)
