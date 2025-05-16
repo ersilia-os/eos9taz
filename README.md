@@ -44,11 +44,18 @@ _10 of 1000 columns are shown_
 - **Source:** `Local`
 - **Source Type:** `External`
 - **DockerHub**: [https://hub.docker.com/r/ersiliaos/eos9taz](https://hub.docker.com/r/ersiliaos/eos9taz)
-- **Docker Architecture:** `AMD64`
+- **Docker Architecture:** `AMD64`, `ARM64`
 - **S3 Storage**: [https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos9taz.zip](https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos9taz.zip)
 
 ### Resource Consumption
+- **Model Size (Mb):** `23`
+- **Environment Size (Mb):** `2636`
+- **Image Size (Mb):** `2581.98`
 
+**Computational Performance (seconds):**
+- 10 inputs: `40.44`
+- 100 inputs: `400.61`
+- 10000 inputs: `593.91`
 
 ### References
 - **Source Code**: [https://github.com/microsoft/molecule-generation](https://github.com/microsoft/molecule-generation)
