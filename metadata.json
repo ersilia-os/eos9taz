@@ -41,8 +41,15 @@
     "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos9taz.zip",
     "DockerHub": "https://hub.docker.com/r/ersiliaos/eos9taz",
     "Docker Architecture": [
-        "AMD64"
+        "AMD64",
+        "ARM64"
     ],
     "Model Size": 23.0,
-    "Environment Size": 2636.0
+    "Environment Size": 2636.0,
+    "Image Size": 2581.98,
+    "Computational Performance 1": 40.44,
+    "Computational Performance 2": 98.69,
+    "Computational Performance 3": 400.61,
+    "Computational Performance 4": 432.25,
+    "Computational Performance 5": 593.91
 }
