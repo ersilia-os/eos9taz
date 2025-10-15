@@ -4,6 +4,7 @@ MoLeR is a graph-based generative model that combines fragment-based and atom-by
 
 This model was incorporated on 2022-12-06.
 
+
 ## Information
 ### Identifiers
 - **Ersilia Identifier:** `eos9taz`
@@ -13,7 +14,7 @@ This model was incorporated on 2022-12-06.
 - **Task:** `Sampling`
 - **Subtask:** `Generation`
 - **Biomedical Area:** `Any`
-- **Target Organism:** `Not Applicable`
+- **Target Organism:** `Any`
 - **Tags:** `Chemical graph model`, `Compound generation`
 
 ### Input
