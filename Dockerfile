@@ -1,9 +1,9 @@
-FROM bentoml/model-server:0.11.0-py39
+FROM bentoml/model-server:0.11.0-py310
 MAINTAINER ersilia
 
-RUN pip install rdkit==2022.09.5
-RUN pip install tensorflow==2.19.0
-RUN pip install molecule-generation==0.4.0
+RUN pip install molecule-generation==0.4.1
+RUN pip install numpy==1.26.4
+RUN pip install rdkit==2025.9.1
 
 WORKDIR /repo
 COPY . /repo
