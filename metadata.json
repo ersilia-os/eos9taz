@@ -38,18 +38,17 @@
     "License": "MIT",
     "Contributor": "anamika-yadav99",
     "Incorporation Date": "2022-12-06",
+    "Last Packaging Date": "2025-10-22",
+    "Release": "v1.0.0",
     "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos9taz.zip",
     "DockerHub": "https://hub.docker.com/r/ersiliaos/eos9taz",
-    "Docker Architecture": [
-        "AMD64",
-        "ARM64"
-    ],
+    "Docker Architecture": "AMD64",
     "Model Size": 23.0,
     "Environment Size": 2121.0,
-    "Image Size": 2581.98,
-    "Computational Performance 1": 40.44,
-    "Computational Performance 2": 98.69,
-    "Computational Performance 3": 400.61,
-    "Computational Performance 4": 432.25,
-    "Computational Performance 5": 593.91
+    "Image Size": 2147.88,
+    "Computational Performance 1": 80.26,
+    "Computational Performance 2": 691.43,
+    "Computational Performance 3": -1.0,
+    "Computational Performance 4": -1.0,
+    "Computational Performance 5": -1.0
 }
