@@ -2,8 +2,7 @@
 
 MoLeR is a graph-based generative model that combines fragment-based and atom-by-atom generation of new molecules with scaffold-constrained optimization. It does not depend on generation history and therefore MoLeR is able to complete arbitrary scaffolds. The model has been trained on the GuacaMol dataset. Here we sample a fragment library from Enamine.
 
-This model was incorporated on 2022-12-06.
-
+This model was incorporated on 2022-12-06.Last packaged on 2025-10-22.
 
 ## Information
 ### Identifiers
@@ -45,18 +44,18 @@ _10 of 1000 columns are shown_
 - **Source:** `Local`
 - **Source Type:** `External`
 - **DockerHub**: [https://hub.docker.com/r/ersiliaos/eos9taz](https://hub.docker.com/r/ersiliaos/eos9taz)
-- **Docker Architecture:** `AMD64`, `ARM64`
+- **Docker Architecture:** `AMD64`
 - **S3 Storage**: [https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos9taz.zip](https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos9taz.zip)
 
 ### Resource Consumption
 - **Model Size (Mb):** `23`
 - **Environment Size (Mb):** `2121`
-- **Image Size (Mb):** `2581.98`
+- **Image Size (Mb):** `2147.88`
 
 **Computational Performance (seconds):**
-- 10 inputs: `40.44`
-- 100 inputs: `400.61`
-- 10000 inputs: `593.91`
+- 10 inputs: `80.26`
+- 100 inputs: `-1`
+- 10000 inputs: `-1`
 
 ### References
 - **Source Code**: [https://github.com/microsoft/molecule-generation](https://github.com/microsoft/molecule-generation)
