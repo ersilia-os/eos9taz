@@ -2,7 +2,7 @@
 
 MoLeR is a graph-based generative model that combines fragment-based and atom-by-atom generation of new molecules with scaffold-constrained optimization. It does not depend on generation history and therefore MoLeR is able to complete arbitrary scaffolds. The model has been trained on the GuacaMol dataset. Here we sample a fragment library from Enamine.
 
-This model was incorporated on 2022-12-06.Last packaged on 2025-10-22.
+This model was incorporated on 2022-12-06.Last packaged on 2026-09-01.
 
 ## Information
 ### Identifiers
@@ -50,10 +50,10 @@ _10 of 1000 columns are shown_
 ### Resource Consumption
 - **Model Size (Mb):** `23`
 - **Environment Size (Mb):** `2110`
-- **Image Size (Mb):** `2147.88`
+- **Image Size (Mb):** `2176.33`
 
 **Computational Performance (seconds):**
-- 10 inputs: `80.26`
+- 10 inputs: `88.18`
 - 100 inputs: `-1`
 - 10000 inputs: `-1`
 
