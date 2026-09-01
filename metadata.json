@@ -39,7 +39,7 @@
     "Contributor": "anamika-yadav99",
     "Incorporation Date": "2022-12-06",
     "Last Packaging Date": "2026-09-01",
-    "Release": "v1.0.0",
+    "Release": "v2.0.0",
     "S3": "https://ersilia-models-zipped.s3.eu-central-1.amazonaws.com/eos9taz.zip",
     "DockerHub": "https://hub.docker.com/r/ersiliaos/eos9taz",
     "Docker Architecture": "AMD64",
