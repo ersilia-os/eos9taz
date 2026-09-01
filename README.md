@@ -28,16 +28,16 @@ This model was incorporated on 2022-12-06.Last packaged on 2025-10-22.
 Below are the **Output Columns** of the model:
 | Name | Type | Direction | Description |
 |------|------|-----------|-------------|
-| cpd_000 | string |  | Generated molecule index 0 using the MoLeR molecular generator |
-| cpd_001 | string |  | Generated molecule index 1 using the MoLeR molecular generator |
-| cpd_002 | string |  | Generated molecule index 2 using the MoLeR molecular generator |
-| cpd_003 | string |  | Generated molecule index 3 using the MoLeR molecular generator |
-| cpd_004 | string |  | Generated molecule index 4 using the MoLeR molecular generator |
-| cpd_005 | string |  | Generated molecule index 5 using the MoLeR molecular generator |
-| cpd_006 | string |  | Generated molecule index 6 using the MoLeR molecular generator |
-| cpd_007 | string |  | Generated molecule index 7 using the MoLeR molecular generator |
-| cpd_008 | string |  | Generated molecule index 8 using the MoLeR molecular generator |
-| cpd_009 | string |  | Generated molecule index 9 using the MoLeR molecular generator |
+| smi_000 | string |  | Generated molecule index 0 using the MoLeR molecular generator |
+| smi_001 | string |  | Generated molecule index 1 using the MoLeR molecular generator |
+| smi_002 | string |  | Generated molecule index 2 using the MoLeR molecular generator |
+| smi_003 | string |  | Generated molecule index 3 using the MoLeR molecular generator |
+| smi_004 | string |  | Generated molecule index 4 using the MoLeR molecular generator |
+| smi_005 | string |  | Generated molecule index 5 using the MoLeR molecular generator |
+| smi_006 | string |  | Generated molecule index 6 using the MoLeR molecular generator |
+| smi_007 | string |  | Generated molecule index 7 using the MoLeR molecular generator |
+| smi_008 | string |  | Generated molecule index 8 using the MoLeR molecular generator |
+| smi_009 | string |  | Generated molecule index 9 using the MoLeR molecular generator |
 
 _10 of 1000 columns are shown_
 ### Source and Deployment
