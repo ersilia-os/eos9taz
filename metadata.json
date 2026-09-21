@@ -19,7 +19,7 @@
         "Compound"
     ],
     "Output Dimension": 1000,
-    "Output Consistency": "Variable",
+    "Output Consistency": "Fixed",
     "Interpretation": "Up to 1000 unique molecules generated per input, preserving its scaffold; some scaffolds yield fewer unique molecules than requested.",
     "Tag": [
         "Chemical graph model",

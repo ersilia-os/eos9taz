@@ -11,8 +11,6 @@ import csv
 import random
 from tqdm import tqdm
 from rdkit import Chem
-from rdkit.Chem import AllChem
-from rdkit import DataStructs
 from rdkit.Chem.Scaffolds import MurckoScaffold
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
@@ -48,14 +46,6 @@ def read_smiles(input_file):
     print("These are the SMILES: ", smiles)
     return smiles
 
-def tanimoto_calc(smi1, smi2):
-    mol1 = Chem.MolFromSmiles(smi1)
-    mol2 = Chem.MolFromSmiles(smi2)
-    fp1 = AllChem.GetMorganFingerprintAsBitVect(mol1, 3, nBits=2048)
-    fp2 = AllChem.GetMorganFingerprintAsBitVect(mol2, 3, nBits=2048)
-    s = round(DataStructs.TanimotoSimilarity(fp1, fp2), 3)
-    return s
-
 def scaffold_based_sampling_unique(query_scaffold, blocks_list, model, target=N_SAMPLES, max_rounds=5, rng=None):
     # A single encode/decode call against `target` random fragments was found to return
     # heavily duplicated molecules (up to ~82% duplicates on some scaffolds, confirmed
@@ -81,7 +71,12 @@ def scaffold_based_sampling_unique(query_scaffold, blocks_list, model, target=N_
             if not o:
                 continue
             mol = Chem.MolFromSmiles(o)
-            key = Chem.MolToSmiles(mol) if mol is not None else o
+            if mol is None:
+                # MoLeR occasionally serializes a ring-fusion carbon as an explicit
+                # [CH] that already has four heavy-atom neighbours, giving valence 5;
+                # RDKit rejects it. Drop it rather than emit an unusable SMILES.
+                continue
+            key = Chem.MolToSmiles(mol)
             if key in seen:
                 continue
             seen.add(key)
