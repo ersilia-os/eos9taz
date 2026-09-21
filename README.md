@@ -22,7 +22,7 @@ This model was incorporated on 2022-12-06.Last packaged on 2026-09-17.
 
 ### Output
 - **Output Dimension:** `1000`
-- **Output Consistency:** `Variable`
+- **Output Consistency:** `Fixed`
 - **Interpretation:** Up to 1000 unique molecules generated per input, preserving its scaffold; some scaffolds yield fewer unique molecules than requested.
 
 Below are the **Output Columns** of the model:
