@@ -46,12 +46,23 @@ def read_smiles(input_file):
     print("These are the SMILES: ", smiles)
     return smiles
 
-def scaffold_based_sampling_unique(query_scaffold, blocks_list, model, target=N_SAMPLES, max_rounds=5, rng=None):
+def scaffold_based_sampling_unique(query_scaffold, blocks_list, model, target=N_SAMPLES, max_rounds=5, rng=None, exclude_smiles=None):
     # A single encode/decode call against `target` random fragments was found to return
     # heavily duplicated molecules (up to ~82% duplicates on some scaffolds, confirmed
     # empirically) with no dedup anywhere in this pipeline. Draw fresh, non-overlapping
     # fragment batches across multiple rounds (reusing the already-loaded model) until
     # `target` unique molecules are collected or the round budget / fragment pool runs out.
+    #
+    # `exclude_smiles` is the input molecule: it must never be returned as one of its own
+    # "generated" outputs. Compared without stereochemistry on purpose -- the decoder mostly
+    # emits stereo-free SMILES, so an exact isomeric match would miss most echoes of an input
+    # that carries stereocenters.
+    exclude_flat = None
+    if exclude_smiles:
+        exclude_mol = Chem.MolFromSmiles(exclude_smiles)
+        if exclude_mol is not None:
+            exclude_flat = Chem.MolToSmiles(exclude_mol, isomericSmiles=False)
+
     rng = rng or random.Random()
     pool = list(blocks_list)
     rng.shuffle(pool)
@@ -75,6 +86,8 @@ def scaffold_based_sampling_unique(query_scaffold, blocks_list, model, target=N_
                 # MoLeR occasionally serializes a ring-fusion carbon as an explicit
                 # [CH] that already has four heavy-atom neighbours, giving valence 5;
                 # RDKit rejects it. Drop it rather than emit an unusable SMILES.
+                continue
+            if exclude_flat is not None and Chem.MolToSmiles(mol, isomericSmiles=False) == exclude_flat:
                 continue
             key = Chem.MolToSmiles(mol)
             if key in seen:
@@ -106,8 +119,8 @@ def main() -> None:
 
     R = []
     with load_model_from_directory(model_directory) as model:
-        for smi in tqdm(scaff_list):
-            decoded = scaffold_based_sampling_unique(smi, blocks_list, model, rng=rng)
+        for input_smi, scaff in tqdm(list(zip(smiles_list, scaff_list))):
+            decoded = scaffold_based_sampling_unique(scaff, blocks_list, model, rng=rng, exclude_smiles=input_smi)
             R += [decoded]
 
     with open(output_file, "w") as f:
