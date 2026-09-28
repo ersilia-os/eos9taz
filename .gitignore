@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 /data.h5
 model/framework/output.csv
+model/checkpoints/
+model/framework/fit/
