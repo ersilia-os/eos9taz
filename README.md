@@ -21,25 +21,25 @@ This model was incorporated on 2022-12-06.Last packaged on 2026-09-28.
 - **Input Dimension:** `1`
 
 ### Output
-- **Output Dimension:** `1000`
+- **Output Dimension:** `100`
 - **Output Consistency:** `Fixed`
-- **Interpretation:** Up to 1000 unique molecules generated per input, preserving its scaffold; some scaffolds yield fewer unique molecules than requested.
+- **Interpretation:** Up to 100 unique molecules generated per input, preserving its scaffold; some scaffolds yield fewer unique molecules than requested.
 
 Below are the **Output Columns** of the model:
 | Name | Type | Direction | Description |
 |------|------|-----------|-------------|
-| smi_000 | string |  | Generated molecule index 0 using the MoLeR molecular generator |
-| smi_001 | string |  | Generated molecule index 1 using the MoLeR molecular generator |
-| smi_002 | string |  | Generated molecule index 2 using the MoLeR molecular generator |
-| smi_003 | string |  | Generated molecule index 3 using the MoLeR molecular generator |
-| smi_004 | string |  | Generated molecule index 4 using the MoLeR molecular generator |
-| smi_005 | string |  | Generated molecule index 5 using the MoLeR molecular generator |
-| smi_006 | string |  | Generated molecule index 6 using the MoLeR molecular generator |
-| smi_007 | string |  | Generated molecule index 7 using the MoLeR molecular generator |
-| smi_008 | string |  | Generated molecule index 8 using the MoLeR molecular generator |
-| smi_009 | string |  | Generated molecule index 9 using the MoLeR molecular generator |
+| smi_00 | string |  | Generated molecule index 0 using the MoLeR molecular generator |
+| smi_01 | string |  | Generated molecule index 1 using the MoLeR molecular generator |
+| smi_02 | string |  | Generated molecule index 2 using the MoLeR molecular generator |
+| smi_03 | string |  | Generated molecule index 3 using the MoLeR molecular generator |
+| smi_04 | string |  | Generated molecule index 4 using the MoLeR molecular generator |
+| smi_05 | string |  | Generated molecule index 5 using the MoLeR molecular generator |
+| smi_06 | string |  | Generated molecule index 6 using the MoLeR molecular generator |
+| smi_07 | string |  | Generated molecule index 7 using the MoLeR molecular generator |
+| smi_08 | string |  | Generated molecule index 8 using the MoLeR molecular generator |
+| smi_09 | string |  | Generated molecule index 9 using the MoLeR molecular generator |
 
-_10 of 1000 columns are shown_
+_10 of 100 columns are shown_
 ### Source and Deployment
 - **Source:** `Local`
 - **Source Type:** `External`
