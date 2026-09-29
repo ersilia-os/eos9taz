@@ -18,7 +18,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 ROOT = os.path.dirname(os.path.abspath(__file__))
 BLOCKS_LIST = os.path.join(ROOT, "..", "..", "checkpoints", "fragments_from_enamine.smi")
 
-N_SAMPLES = 1000
+N_SAMPLES = 100
 
 
 def get_murcko_scaffold(smiles):
@@ -125,7 +125,7 @@ def main() -> None:
 
     with open(output_file, "w") as f:
         writer = csv.writer(f)
-        header = ["smi_{:03d}".format(i) for i in range(N_SAMPLES)]
+        header = ["smi_{:02d}".format(i) for i in range(N_SAMPLES)]
         writer.writerow(header)
         for r in R:
             writer.writerow(r)
