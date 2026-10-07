@@ -1,6 +1,6 @@
 # Extending molecular scaffolds with fragments
 
-MoLeR is a graph-based generative model that combines fragment-based and atom-by-atom generation of new molecules with scaffold-constrained optimization. It does not depend on generation history and therefore MoLeR is able to complete arbitrary scaffolds. The model has been trained on the GuacaMol dataset. Here we sample a fragment library from Enamine.
+Completes the Murcko scaffold of an input molecule with new chemistry using MoLeR, a graph-based variational autoencoder trained by Maziarz and colleagues on GuacaMol's roughly 1.5 million drug-like molecules. Because the decoder assembles molecules from recurring structural motifs and is never conditioned on its own generation history, intermediate structures stay chemically valid and any scaffold can serve as a seed. Ersilia seeds the latent space with an Enamine fragment library under a fixed random seed, drops duplicates and the input itself, and returns up to 100 molecules.
 
 This model was incorporated on 2022-12-06.Last packaged on 2026-09-29.
 
@@ -23,7 +23,7 @@ This model was incorporated on 2022-12-06.Last packaged on 2026-09-29.
 ### Output
 - **Output Dimension:** `100`
 - **Output Consistency:** `Fixed`
-- **Interpretation:** Up to 100 unique molecules generated per input, preserving its scaffold; some scaffolds yield fewer unique molecules than requested.
+- **Interpretation:** Up to 100 unique molecules completing the input scaffold with Enamine fragments, sometimes fewer.
 
 Below are the **Output Columns** of the model:
 | Name | Type | Direction | Description |
