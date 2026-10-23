@@ -112,15 +112,24 @@ def main() -> None:
     output_file = sys.argv[2]
 
     smiles_list = read_smiles(input_file=input_file)
-    scaff_list = [get_murcko_scaffold(smi) for smi in smiles_list]
 
     model_directory = os.path.abspath(os.path.join(ROOT, "..", "..", "checkpoints", "MODEL_DIR"))
-    rng = random.Random(42)
+    # Fresh entropy on every call, so the same input file gives different molecules at each run.
+    # The model wrapper also reseeds the global random, numpy and TensorFlow generators to its
+    # `seed` (default 0) when it loads, so draw that seed from our own generator as well.
+    rng = random.Random()
 
     R = []
-    with load_model_from_directory(model_directory) as model:
-        for input_smi, scaff in tqdm(list(zip(smiles_list, scaff_list))):
-            decoded = scaffold_based_sampling_unique(scaff, blocks_list, model, rng=rng, exclude_smiles=input_smi)
+    with load_model_from_directory(model_directory, seed=rng.randrange(2**31)) as model:
+        for input_smi in tqdm(smiles_list):
+            # One bad input (invalid SMILES, a scaffold the decoder cannot handle) must not stop
+            # the other inputs: it gets an empty row and the run goes on.
+            try:
+                scaff = get_murcko_scaffold(input_smi)
+                decoded = scaffold_based_sampling_unique(scaff, blocks_list, model, rng=rng, exclude_smiles=input_smi)
+            except Exception as e:
+                print(f"[ERROR] {input_smi!r}: {type(e).__name__}: {e}", file=sys.stderr)
+                decoded = [""] * N_SAMPLES
             R += [decoded]
 
     with open(output_file, "w") as f:
