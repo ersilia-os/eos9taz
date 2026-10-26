@@ -2,7 +2,7 @@
 
 Completes the Murcko scaffold of an input molecule with new chemistry using MoLeR, a graph-based variational autoencoder trained by Maziarz and colleagues on GuacaMols roughly 1.5 million drug-like molecules. Because the decoder assembles molecules from recurring structural motifs and is never conditioned on its own generation history, intermediate structures stay chemically valid and any scaffold can serve as a seed. Ersilia seeds the latent space with a different random draw of Enamine fragments at every run, drops duplicates and the input itself, and returns up to 100 molecules.
 
-This model was incorporated on 2022-12-06.Last packaged on 2026-10-23.
+This model was incorporated on 2022-12-06.Last packaged on 2026-10-26.
 
 ## Information
 ### Identifiers
@@ -50,11 +50,11 @@ _10 of 100 columns are shown_
 ### Resource Consumption
 - **Model Size (Mb):** `23`
 - **Environment Size (Mb):** `2112`
-- **Image Size (Mb):** `2146.8`
+- **Image Size (Mb):** `2147.28`
 
 **Computational Performance (seconds):**
-- 10 inputs: `40.99`
-- 100 inputs: `525.95`
+- 10 inputs: `50.56`
+- 100 inputs: `817.71`
 - 10000 inputs: `-1`
 
 ### References
